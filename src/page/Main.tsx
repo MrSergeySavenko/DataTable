@@ -1,14 +1,19 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SWrapper } from './Main.style';
 import { DataTable } from '../components/DataTable/DataTable';
-import { useDispatch } from 'react-redux';
-import { fetchUsers } from '../__data__/actions/usersData.actions';
+import { useSelector } from 'react-redux';
+import { RootState } from '../__data__/store';
 
 export const Main: React.FC = () => {
-    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const data = useSelector((state: RootState) => state.usersData.data);
 
     useEffect(() => {
-        dispatch(fetchUsers() as any);
+        if (!data) {
+            return navigate('/');
+        }
     }, []);
 
     return (
