@@ -7,6 +7,9 @@ const initialState: IDataState = {
     isLoading: false,
     isError: false,
     error: '',
+    sortName: '',
+    dataItem: null,
+    newUser: null,
 };
 
 export const dataSlice = createSlice({
@@ -21,6 +24,15 @@ export const dataSlice = createSlice({
         },
         dataFetchSuccess(state: Draft<IDataState>, action: PayloadAction<Array<IData>>) {
             return { ...state, isLoading: false, data: action.payload };
+        },
+        addSortName(state: Draft<IDataState>, action: PayloadAction<string>) {
+            return { ...state, sortName: action.payload };
+        },
+        addItemInfo(state: Draft<IDataState>, action: PayloadAction<IData>) {
+            return { ...state, dataItem: action.payload };
+        },
+        addNewUser(state: Draft<IDataState>, action: PayloadAction<IData>) {
+            return { ...state, newUser: action.payload };
         },
     },
 });

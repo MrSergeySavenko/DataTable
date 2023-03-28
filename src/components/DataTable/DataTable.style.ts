@@ -28,4 +28,20 @@ export const SUserValidation = styled('div')(() => ({
     fontStyle: 'normal',
     fontWeight: '500',
     paddingLeft: '8px',
+    cursor: 'pointer',
+}));
+
+export const SDataItem = styled('div')(() => ({
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    paddingLeft: '8px',
+    marginBottom: '5px',
+    '&:last-child': {
+        marginBottom: '0',
+    },
+}));
+
+export const SDataInfo = styled('div')(() => ({
+    cursor: 'pointer',
 }));

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { IData } from '../../__data__/models/data-table.models';
 import { RootState } from '../../__data__/store';
 import { uniqueKey } from '../../__data__/utils/utils';
 import { SPaginationPage, SPadinationWrapper } from './DataPagination.style';
@@ -7,23 +8,52 @@ import { SPaginationPage, SPadinationWrapper } from './DataPagination.style';
 interface IProps {
     setPageNum: (num: number) => void;
     pageNum: number;
+    foundItem: Array<IData>;
+    filterActive: boolean;
+    sortData: Array<IData>;
 }
 
-export const DataPagination: React.FC<IProps> = ({ setPageNum, pageNum }) => {
+export const DataPagination: React.FC<IProps> = ({
+    setPageNum,
+    pageNum,
+    foundItem,
+    filterActive,
+    sortData,
+}) => {
     const { data } = useSelector((state: RootState) => state.usersData);
     const [pageLength, setPageLength] = useState<Array<number>>([]);
     const [pages, setPages] = useState<Array<number | string>>([1]);
 
     useEffect(() => {
         if (data) {
-            const numTest = Math.ceil(data.length / 20);
+            const numTest = Math.ceil(sortData?.length / 20);
             const pageArr: Array<number> = Array(numTest)
                 .fill(1)
                 .map((item, i) => i + 1);
             console.log(pageArr);
             return setPageLength(pageArr);
         }
-    }, [data]);
+    }, [sortData]);
+
+    useEffect(() => {
+        if (filterActive) {
+            const numTest = Math.ceil(foundItem.length / 20);
+            const pageArr: Array<number> = Array(numTest)
+                .fill(1)
+                .map((item, i) => i + 1);
+            console.log(pageArr);
+            return setPageLength(pageArr);
+        } else {
+            if (data) {
+                const numTest = Math.ceil(data?.length / 20);
+                const pageArr: Array<number> = Array(numTest)
+                    .fill(1)
+                    .map((item, i) => i + 1);
+                console.log(pageArr);
+                return setPageLength(pageArr);
+            }
+        }
+    }, [foundItem]);
 
     useEffect(() => {
         constructPagination();
@@ -57,11 +87,13 @@ export const DataPagination: React.FC<IProps> = ({ setPageNum, pageNum }) => {
                     if (pageNum > pageLength.length - 3) {
                         paginConstruct = firstPage
                             .concat(dots)
-                            .concat(pageLength.slice(46, 49))
+                            .concat(pageLength.slice(pageLength.length - 4, pageLength.length - 1))
                             .concat(lastPage);
                     }
                 }
             }
+        } else {
+            paginConstruct = pageLength;
         }
 
         setPages(paginConstruct);

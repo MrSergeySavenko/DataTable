@@ -5,8 +5,8 @@ export interface IData {
     lastName: string;
     email: string;
     phone: string;
-    adress: {
-        streetAdress: string;
+    address: {
+        streetAddress: string;
         city: string;
         state: string;
         zip: string;
@@ -20,4 +20,7 @@ export interface IDataState {
     isError: boolean;
     error: string;
     data: Array<IData> | null;
+    sortName: string;
+    dataItem: IData | null;
+    newUser: IData | null;
 }

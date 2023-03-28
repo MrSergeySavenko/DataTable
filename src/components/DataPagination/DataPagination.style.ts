@@ -22,4 +22,5 @@ export const SPaginationPage = styled('div')(() => ({
     '&:last-child': {
         marginRight: 'none',
     },
+    cursor: 'pointer',
 }));
