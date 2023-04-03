@@ -22,5 +22,4 @@ export interface IDataState {
     data: Array<IData> | null;
     sortName: string;
     dataItem: IData | null;
-    newUser: IData | null;
 }

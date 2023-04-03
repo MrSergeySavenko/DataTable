@@ -7,6 +7,7 @@ export const SLayoutWrapper = styled('div')(() => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignContent: 'center',
+    marginTop: '200px',
 }));
 
 export const SButtonWrapper = styled('div')(() => ({
@@ -25,6 +26,7 @@ export const SLayoutButton = styled('div')(() => ({
     textTransform: 'uppercase',
     padding: '20px 0',
     color: '#FFFFFF',
+    cursor: 'pointer',
 }));
 
 export const SLoading = styled('div')(() => ({

@@ -9,7 +9,6 @@ const initialState: IDataState = {
     error: '',
     sortName: '',
     dataItem: null,
-    newUser: null,
 };
 
 export const dataSlice = createSlice({
@@ -30,9 +29,6 @@ export const dataSlice = createSlice({
         },
         addItemInfo(state: Draft<IDataState>, action: PayloadAction<IData>) {
             return { ...state, dataItem: action.payload };
-        },
-        addNewUser(state: Draft<IDataState>, action: PayloadAction<IData>) {
-            return { ...state, newUser: action.payload };
         },
     },
 });

@@ -37,14 +37,18 @@ export const SText = styled('p')(() => ({
     marginBottom: '10px',
 }));
 
-export const SButton = styled('button')(() => ({
+interface ISButtonProps {
+    isDis?: boolean;
+}
+
+export const SButton = styled('button')(({ isDis }: ISButtonProps) => ({
     width: '250px',
     height: '45px',
-    background: '#4478ff',
     borderRadius: '30px',
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontSize: '20px',
     color: '#fff',
     cursor: 'pointer',
+    backgroundColor: isDis ? 'grey' : '#4478ff',
 }));
