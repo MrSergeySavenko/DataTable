@@ -28,8 +28,12 @@ export const LayoutPage: React.FC = () => {
     return (
         <SLayoutWrapper>
             <SButtonWrapper>
-                <SLayoutButton onClick={dataLoadingLow}>Маленькая кнопка</SLayoutButton>
-                <SLayoutButton onClick={dataLoadingBig}>Большая кнопка</SLayoutButton>
+                <SLayoutButton onClick={dataLoadingLow} data-test='btnL'>
+                    Маленькая кнопка
+                </SLayoutButton>
+                <SLayoutButton onClick={dataLoadingBig} data-test='btnB'>
+                    Большая кнопка
+                </SLayoutButton>
             </SButtonWrapper>
 
             <SLoading>{isLoading ? <SText>{'...Загрузка'}</SText> : null}</SLoading>
