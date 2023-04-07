@@ -65,7 +65,7 @@ export const DataTableNav: React.FC<IProps> = ({ sortData, setSortData }) => {
     return (
         <>
             <SNav>
-                <SValidation onClick={() => handleSortNameClicl('id')}>
+                <SValidation data-nav='id' onClick={() => handleSortNameClicl('id')}>
                     Id
                     {sortName === 'id' ? <SortIcon sortClick={sortClick} /> : null}
                 </SValidation>

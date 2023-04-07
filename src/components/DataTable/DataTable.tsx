@@ -38,7 +38,7 @@ export const DataTable: React.FC<IProps> = ({ foundItem, filterActive, sortData,
         console.log(dataItem);
         if (infoActive) {
             return (
-                <div onClick={() => setInfoActive(false)}>
+                <div data-test='info' onClick={() => setInfoActive(false)}>
                     <SDataItem>Id: {dataItem.id}</SDataItem>
                     <SDataItem>FirstName: {dataItem.firstName}</SDataItem>
                     <SDataItem>LastName: {dataItem.lastName}</SDataItem>
@@ -54,6 +54,8 @@ export const DataTable: React.FC<IProps> = ({ foundItem, filterActive, sortData,
         }
     };
 
+    const itemData = (i) => 1 + i;
+
     const pageConstructor = () => {
         console.log(foundItem);
         let dataPage = [];
@@ -65,10 +67,14 @@ export const DataTable: React.FC<IProps> = ({ foundItem, filterActive, sortData,
         }
 
         return dataPage?.map((item, i) => (
-            <SDataTableItem key={uniqueKey(item.firstName, i)} onClick={() => handleTakeInfo(item)}>
-                <SUserValidation>{item.id}</SUserValidation>
-                <SUserValidation>{item.firstName}</SUserValidation>
-                <SUserValidation>{item.lastName}</SUserValidation>
+            <SDataTableItem
+                key={uniqueKey(item.firstName, i)}
+                data-test={i}
+                onClick={() => handleTakeInfo(item)}
+            >
+                <SUserValidation data-item={itemData(i)}>{item.id}</SUserValidation>
+                <SUserValidation data-fName={itemData(i)}>{item.firstName}</SUserValidation>
+                <SUserValidation data-lName={itemData(i)}>{item.lastName}</SUserValidation>
                 <SUserValidation>{item.email}</SUserValidation>
                 <SUserValidation>{item.phone}</SUserValidation>
             </SDataTableItem>

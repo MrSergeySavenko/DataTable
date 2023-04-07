@@ -47,8 +47,10 @@ export const FindUser: React.FC<IProps> = ({ setFoundItem, filterActive, setFilt
     return (
         <SForm>
             <SFormWidth>
-                <SInput value={text} onChange={(e) => setText(e.target.value)} />
-                <SButton onClick={findItem}>Найти</SButton>
+                <SInput value={text} data-test='findI' onChange={(e) => setText(e.target.value)} />
+                <SButton onClick={findItem} data-test='findBtn'>
+                    Найти
+                </SButton>
             </SFormWidth>
             <div></div>
         </SForm>

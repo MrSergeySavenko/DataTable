@@ -37,6 +37,12 @@ export const SText = styled('p')(() => ({
     marginBottom: '10px',
 }));
 
+export const SAddFormWrapper = styled('div')(() => ({
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+}));
+
 interface ISButtonProps {
     isDis?: boolean;
 }
@@ -51,4 +57,15 @@ export const SButton = styled('button')(({ isDis }: ISButtonProps) => ({
     color: '#fff',
     cursor: 'pointer',
     backgroundColor: isDis ? 'grey' : '#4478ff',
+}));
+
+export const STextAlert = styled('p')(() => ({
+    height: '45px',
+    textAlign: 'center',
+    marginLeft: '15px',
+    marginTop: '20px',
+    color: '#000',
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontSize: '20px',
 }));

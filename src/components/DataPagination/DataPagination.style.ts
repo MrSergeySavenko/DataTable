@@ -7,7 +7,11 @@ export const SPadinationWrapper = styled('div')(() => ({
     justifyContent: 'center',
 }));
 
-export const SPaginationPage = styled('div')(() => ({
+interface ISProp {
+    activePage: boolean;
+}
+
+export const SPaginationPage = styled('div')(({ activePage }: ISProp) => ({
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500',
@@ -23,4 +27,6 @@ export const SPaginationPage = styled('div')(() => ({
         marginRight: 'none',
     },
     cursor: 'pointer',
+    background: activePage ? '#4478FF' : '#fff',
+    color: activePage ? '#fff' : '#000',
 }));

@@ -24,6 +24,8 @@ export const DataPagination: React.FC<IProps> = ({
     const [pageLength, setPageLength] = useState<Array<number>>([]);
     const [pages, setPages] = useState<Array<number | string>>([1]);
 
+    const [activePage, setActivePage] = useState(true);
+
     useEffect(() => {
         if (data) {
             const numTest = Math.ceil(sortData?.length / 20);
@@ -106,7 +108,12 @@ export const DataPagination: React.FC<IProps> = ({
             <SPadinationWrapper>
                 {pages.map((item, i) => (
                     <div>
-                        <SPaginationPage key={uniqueKey(item, i)} onClick={setCurrentPage}>
+                        <SPaginationPage
+                            key={uniqueKey(item, i)}
+                            data-pag={item}
+                            activePage={pageNum === item}
+                            onClick={setCurrentPage}
+                        >
                             {item}
                         </SPaginationPage>
                     </div>

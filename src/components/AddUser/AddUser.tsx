@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { IData } from '../../__data__/models/data-table.models';
 import { getNewId } from '../../__data__/utils/utils';
-import { SAddInput, SButton, SForm, SText, SFormWrapper, SAddUserWrapper } from './AddUser.style';
+import {
+    SAddInput,
+    SButton,
+    SForm,
+    SText,
+    SFormWrapper,
+    SAddUserWrapper,
+    STextAlert,
+    SAddFormWrapper,
+} from './AddUser.style';
 
 interface IProps {
     sortData: Array<IData>;
@@ -31,6 +40,8 @@ export const AddUser: React.FC<IProps> = ({ sortData, setSortData }) => {
     const [formValid, setFormValid] = useState(false);
 
     const [addUserActive, setAddUserActive] = useState(false);
+
+    const [textAlert, setTextAlert] = useState(false);
 
     const reEmail =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -66,6 +77,10 @@ export const AddUser: React.FC<IProps> = ({ sortData, setSortData }) => {
     ]);
 
     const handleAddUser = () => {
+        setTextAlert(true);
+        setTimeout(() => {
+            setTextAlert(false);
+        }, 5000);
         let constractObj = {
             id: 0,
             firstName: '',
@@ -166,6 +181,7 @@ export const AddUser: React.FC<IProps> = ({ sortData, setSortData }) => {
                             <SAddInput
                                 type='text'
                                 name='firstName'
+                                data-add='firstName'
                                 value={newFirstName}
                                 onBlur={(e) => blurHandle(e)}
                                 onChange={(e) => setNewFirstName(e.target.value)}
@@ -187,6 +203,7 @@ export const AddUser: React.FC<IProps> = ({ sortData, setSortData }) => {
                             <SAddInput
                                 type='text'
                                 name='lastName'
+                                data-add='lastName'
                                 value={newLastName}
                                 onBlur={(e) => blurHandle(e)}
                                 onChange={(e) => setNewLastName(e.target.value)}
@@ -208,6 +225,7 @@ export const AddUser: React.FC<IProps> = ({ sortData, setSortData }) => {
                             <SAddInput
                                 type='email'
                                 name='email'
+                                data-add='email'
                                 value={newEmail}
                                 onBlur={(e) => blurHandle(e)}
                                 onChange={(e) => setNewEmail(e.target.value)}
@@ -229,6 +247,7 @@ export const AddUser: React.FC<IProps> = ({ sortData, setSortData }) => {
                             <SAddInput
                                 type='tel'
                                 name='phone'
+                                data-add='phone'
                                 value={newPhone}
                                 onBlur={(e) => blurHandle(e)}
                                 onChange={(e) => setNewPhone(e.target.value)}
@@ -250,6 +269,7 @@ export const AddUser: React.FC<IProps> = ({ sortData, setSortData }) => {
                             <SAddInput
                                 type='text'
                                 name='street'
+                                data-add='street'
                                 value={newStreet}
                                 onBlur={(e) => blurHandle(e)}
                                 onChange={(e) => setNewStreet(e.target.value)}
@@ -271,6 +291,7 @@ export const AddUser: React.FC<IProps> = ({ sortData, setSortData }) => {
                             <SAddInput
                                 type='text'
                                 name='city'
+                                data-add='city'
                                 value={newCity}
                                 onBlur={(e) => blurHandle(e)}
                                 onChange={(e) => setNewCity(e.target.value)}
@@ -292,6 +313,7 @@ export const AddUser: React.FC<IProps> = ({ sortData, setSortData }) => {
                             <SAddInput
                                 type='text'
                                 name='state'
+                                data-add='state'
                                 value={newState}
                                 onBlur={(e) => blurHandle(e)}
                                 onChange={(e) => setNewState(e.target.value)}
@@ -313,6 +335,7 @@ export const AddUser: React.FC<IProps> = ({ sortData, setSortData }) => {
                             <SAddInput
                                 type='number'
                                 name='zip'
+                                data-add='zip'
                                 value={newZIP}
                                 onBlur={(e) => blurHandle(e)}
                                 onChange={(e) => setNewZIP(e.target.value)}
@@ -334,6 +357,7 @@ export const AddUser: React.FC<IProps> = ({ sortData, setSortData }) => {
                             <SAddInput
                                 type='text'
                                 name='description'
+                                data-add='description'
                                 value={newDescription}
                                 onBlur={(e) => blurHandle(e)}
                                 onChange={(e) => setNewDescription(e.target.value)}
@@ -347,13 +371,22 @@ export const AddUser: React.FC<IProps> = ({ sortData, setSortData }) => {
                             ) : null}
                         </SForm>
                     </SFormWrapper>
-                    <SButton onClick={handleAddUser} isDis={!formValid}>
-                        Добавить в таблицу
-                    </SButton>
+                    <SAddFormWrapper>
+                        <SButton onClick={handleAddUser} data-add='add' isDis={!formValid}>
+                            Добавить в таблицу
+                        </SButton>
+                        {textAlert ? (
+                            <STextAlert data-add='alert'>Данные добавленны в таблицу</STextAlert>
+                        ) : null}
+                    </SAddFormWrapper>
                 </div>
             );
         } else {
-            return <SButton onClick={handleActivateAddZone}>Добавить</SButton>;
+            return (
+                <SButton data-add='active' onClick={handleActivateAddZone}>
+                    Добавить
+                </SButton>
+            );
         }
     };
 
